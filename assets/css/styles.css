@@ -55,6 +55,8 @@ body {
   }
   /* styles all items in header */
   .header-content {
+    border: solid;
+    padding: 10px;
     color: var(--main);
     line-height: 25px;
     margin: 0 10px;
@@ -82,15 +84,12 @@ body {
     left: 0; 
     background: var(--main);
   }
-  /* styles buttons and adds shadow on hover */
+  /* styles buttons */
   .button-style {
     display: flex;
     justify-content: left;
-    padding: 10px;
     background-color: var(--main);
     color: white;
-    font-size: large;
-    border-radius: 10px;
     transition: all 0.3s;
   }
   .button-style:hover {
