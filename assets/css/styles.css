@@ -3,3 +3,40 @@
   --main: #F15152;
   --midnight: #1E555C;
 }
+
+/* font choice for the quiz */
+*, body {
+    font-family: "Times New Roman";
+  }
+
+  /* element selectors */
+body {
+    box-sizing: border-box;
+    background-color: var(--midnight);
+  }
+  /* adjusts the styling on the highscores and time slot */
+  header {
+    padding: 123px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+  }
+  main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 100px;
+  }
+  h1 {
+    text-align: center;
+    padding-bottom: 10px;
+    font-size: xx-large;
+    font-weight: bolder;
+    color: var(--main);
+  }
+  h2 {
+    margin: 0px 10px 20px 10px;
+    font-size: x-large;
+    font-weight: bold;
+    color: var(--main)
+  }
