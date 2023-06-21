@@ -14,3 +14,16 @@ function printHighscores() {
             document.getElementById("highscores").appendChild(li);
         }
 }
+function clearHighscores() {
+    // remove saved scores from local storage
+    localStorage.removeItem("savedScores");
+    
+    // reload page to reflect the changes
+    window.location.reload();
+}
+
+// event listener for the clear highscores button
+document.querySelector("#clear").addEventListener("click", clearHighscores);
+
+// Call the printHighscores function to display saved highscores
+printHighscores();
