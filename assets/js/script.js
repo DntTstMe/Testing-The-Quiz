@@ -24,3 +24,27 @@ function startQuiz() {
     setTimer();
     getQuestion();
 }
+
+function getQuestion() {
+    resetState()
+    showQuestion(shuffledQuestions[currentQuestionIndex])
+}
+function showQuestion(questions) {
+    if (currentQuestionIndex > 3) {
+        endScreenEl.classList.add('stop-time')
+        questionsEl.classList.add('hide');
+        endScreenEl.classList.remove('hide');
+        document.getElementById('final-score').innerHTML = counter.innerHTML
+    }
+    questionTitleEl.innerText = questions.title;
+    questions.options.forEach(options => {
+        const button = document.createElement('button')
+        button.innerText = options.text
+        button.classList.add('button-style', 'answer-button')
+        if (options.correct === true) {
+            button.classList.add('correct')
+        }
+        button.addEventListener('click', selectAnswer)
+        answerButtonsEl.appendChild(button)
+    })
+}
