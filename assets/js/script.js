@@ -91,6 +91,26 @@ function setTimer() {
         document.getElementById('final-score').innerHTML = counter.innerHTML
     }
 } 
+
+function saveHighscore() {
+    var initials = document.getElementById('initials').value;
+    var finalScore = counter.innerHTML
+    if (initials == '') {
+        alert('Please input at least 1 character')
+        return null
+    }
+    var currentScore = { init: initials, score: finalScore };
+    var savedScores = JSON.parse(localStorage.getItem("savedScores"));
+    if (savedScores !== null) {
+        savedScores.push(currentScore);
+        localStorage.setItem("savedScores", JSON.stringify(savedScores));
+    } else {
+        savedScores = [currentScore];
+        localStorage.setItem("savedScores", JSON.stringify(savedScores));
+    }
+
+    window.location.href = "./score.html";
+}
 // event listeners
 document.getElementById('submit-button').addEventListener('click', saveHighscore)
 document.getElementById('start-button').addEventListener('click', startQuiz)
