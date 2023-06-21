@@ -74,3 +74,23 @@ function selectAnswer(e) {
     currentQuestionIndex++
     getQuestion()
 }
+// sets the timer
+function setTimer() {
+    seconds--;
+    counter.innerHTML =
+        (seconds < 10 ? "0" : "") + String(seconds);
+    if (endScreenEl.classList.contains('stop-time')) {
+        counter.innerHTML = document.getElementById('final-score').innerHTML
+    } else if (seconds > 0) {
+        setTimeout(setTimer, 1000);
+
+    } else {
+        counter.innerHTML = '00'
+        questionsEl.classList.add('hide');
+        endScreenEl.classList.remove('hide');
+        document.getElementById('final-score').innerHTML = counter.innerHTML
+    }
+} 
+// event listeners
+document.getElementById('submit-button').addEventListener('click', saveHighscore)
+document.getElementById('start-button').addEventListener('click', startQuiz)
