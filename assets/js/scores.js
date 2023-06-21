@@ -1,4 +1,4 @@
-function printHighscores() {
+function displayTopScores() {
     // Retrieve saved scores from local storage
     var scores = JSON.parse(localStorage.getItem("savedScores"));
 
@@ -9,12 +9,12 @@ function printHighscores() {
         // Loop through scores, create list items to display them
         for (var i = 0; i < scores.length; i++) {
             var li = document.createElement("li");
-            li.classList.add('list-style');
-            li.textContent = scores[i].init + " - " + scores[i].score;
-            document.getElementById("highscores").appendChild(li);
+            li.classList.add('score-item');
+            li.textContent = scores[i].name + " - " + scores[i].score;
+            document.getElementById("score-list").appendChild(li);
         }
 }
-function clearHighscores() {
+function clearScores() {
     // remove saved scores from local storage
     localStorage.removeItem("savedScores");
     
@@ -23,7 +23,7 @@ function clearHighscores() {
 }
 
 // event listener for the clear highscores button
-document.querySelector("#clear").addEventListener("click", clearHighscores);
+document.querySelector("#clear-scores").addEventListener("click", clearScores);
 
-// Call the printHighscores function to display saved highscores
-printHighscores();
+// Call the displayTopScores function to display saved highscores
+displayTopScores();
