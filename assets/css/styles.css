@@ -98,7 +98,7 @@ body {
   }
   
   /* styles the card */
-  .wrapper {
+  .quiz-wrapper {
     border: 34px solid var(--main);
     border-radius: 0px;
     width: 413px;

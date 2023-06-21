@@ -22,14 +22,14 @@ function startQuiz() {
     currentQuestionIndex = 0
 
     setTimer();
-    getQuestion();
+    grabQuestion();
 }
 
-function getQuestion() {
+function grabQuestion() {
     resetState()
-    showQuestion(shuffledQuestions[currentQuestionIndex])
+    displayQuestion(shuffledQuestions[currentQuestionIndex])
 }
-function showQuestion(questions) {
+function displayQuestion(questions) {
     if (currentQuestionIndex > 3) {
         endScreenEl.classList.add('stop-time')
         questionsEl.classList.add('hide');
@@ -72,7 +72,7 @@ function selectAnswer(e) {
         }, 1000);
     }
     currentQuestionIndex++
-    getQuestion()
+    grabQuestion()
 }
 // sets the timer
 function setTimer() {
@@ -91,8 +91,8 @@ function setTimer() {
         document.getElementById('final-score').innerHTML = counter.innerHTML
     }
 } 
-
-function saveHighscore() {
+//saves the highscore
+function saveScore() {
     var initials = document.getElementById('initials').value;
     var finalScore = counter.innerHTML
     if (initials == '') {
@@ -112,5 +112,5 @@ function saveHighscore() {
     window.location.href = "./score.html";
 }
 // event listeners
-document.getElementById('submit-button').addEventListener('click', saveHighscore)
+document.getElementById('submit-button').addEventListener('click', saveScore)
 document.getElementById('start-button').addEventListener('click', startQuiz)

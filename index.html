@@ -15,16 +15,16 @@
     <header>
         <!-- highscore page -->
         <a class="highscore-link header-content" href="./score.html">View Highscores</a>
-        <h3 class="header-content">Time: <span id="timer">00</span></h3>
+        <h3 class="header-content">Time remaining: <span id="timer">00</span></h3>
     </header>
 
     <main>
-        <section class="wrapper">
+        <section class="quiz-wrapper">
 
             <!-- quiz start -->
             <article id="start-screen" class="menu">
-                <h1>Coding Challenge</h1>
-                <p class="p-menu">Please answer these questions as quickly as possible! Each wrong answer will deduct 10 seconds</p>
+                <h1>Quiz Time</h1>
+                <p class="p-menu">Please answer these questions as quickly as possible! Each wrong answer will deduct 10 seconds. </p>
                 <button id="start-button" class="button-style">Start Quiz</button>
             </article>
 
@@ -41,9 +41,9 @@
 
             <!-- Quiz end -->
             <article id="end-screen" class="menu hide">
-                <h1>Finished!</h1>
+                <h1>Quiz finished!</h1>
                 <p class="p-menu">Final score is <span id="final-score">00</span>.</p>
-                <p class="p-menu">Enter initials: <input type="text" id="initials" max="3" /></p>
+                <p class="p-menu">Enter your initials: <input type="text" id="initials" max="3" /></p>
                 <button id="submit-button" class="button-style">Submit</button>
             </article>
 
