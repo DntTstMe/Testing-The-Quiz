@@ -105,6 +105,14 @@ body {
     max-width: 80%;
     padding: 10px;
   }
+/* styles my highscore list page */
+  .scores-wrapper {
+    border: 34px solid var(--main);
+    border-radius: 0px;
+    width: 413px;
+    max-width: 80%;
+    padding: 10px;
+  }
   
   /* hides any content with this class */
   .hide {
@@ -115,7 +123,7 @@ body {
     padding: 5px 10px;
   }
   /* styles button on highscores page */
-  .highscores-nav {
+  .scores-nav {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
