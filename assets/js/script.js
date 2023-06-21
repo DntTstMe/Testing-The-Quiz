@@ -6,3 +6,7 @@ var questionTitleEl = document.getElementById("question-title");
 var answerButtonsEl = document.getElementById("options");
 var feedbackEl = document.getElementById("feedback");
 var counter = document.getElementById("timer");
+
+// variables to keep track of quiz state
+let shuffledQuestions, currentQuestionIndex;
+var seconds = 60
