@@ -48,3 +48,29 @@ function showQuestion(questions) {
         answerButtonsEl.appendChild(button)
     })
 }
+function resetState() {
+    while (answerButtonsEl.firstChild) {
+        answerButtonsEl.removeChild(answerButtonsEl.firstChild)
+    }
+}
+
+// takes away time if incorrect answer
+function selectAnswer(e) {
+    const selectedButton = e.target
+    if (selectedButton.classList.contains('correct')) {
+        feedbackEl.classList.remove('hide')
+        feedbackEl.innerHTML = 'Correct'
+        setTimeout(function () {
+            feedbackEl.innerHTML = '';
+        }, 1000);
+    } else {
+        seconds -= 10
+        feedbackEl.classList.remove('hide')
+        feedbackEl.innerHTML = 'Wrong'
+        setTimeout(function () {
+            feedbackEl.innerHTML = '';
+        }, 1000);
+    }
+    currentQuestionIndex++
+    getQuestion()
+}
