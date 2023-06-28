@@ -10,7 +10,7 @@ function displayTopScores() {
         for (var i = 0; i < scores.length; i++) {
             var li = document.createElement("li");
             li.classList.add('score-item');
-            li.textContent = scores[i].name + " - " + scores[i].score;
+            li.textContent = scores[i].init + " - " + scores[i].score;
             document.getElementById("score-list").appendChild(li);
         }
 }

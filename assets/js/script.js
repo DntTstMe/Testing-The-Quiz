@@ -1,116 +1,124 @@
-// variables to reference DOM elements
-var questionTitleEl = document.getElementById("question-title");
-var questionsEl = document.getElementById("questions");
-var startScreenEl = document.getElementById("start-screen");
-var endScreenEl = document.getElementById("end-screen");
-var answerButtonsEl = document.getElementById("options");
-var feedbackEl = document.getElementById("feedback");
-var counter = document.getElementById("timer");
+$(document).ready(function() {
 
-// variables to keep track of quiz state
-let shuffledQuestions, currentQuestionIndex;
-var seconds = 60
+// variables 
 
-// starts quiz
-function startQuiz() {
-    // hides start screen and unhides questions screen
-    startScreenEl.classList.add('hide');
-    questionsEl.classList.remove('hide');
+    var counter = $('#timer');
+    var questionTitleEl = $('#question-title');
+    var feedbackEl = $('#feedback');
+    var questionsEl = $('#questions');
+    var answerButtonsEl = $('#options');
+    var startScreenEl = $('#start-screen');
+    var endScreenEl = $('#end-screen');
 
-    // randomizes questions and creates a randomized array
-    shuffledQuestions = questions.sort(() => Math.random() - .5)
-    currentQuestionIndex = 0
+    // variables to keep track of quiz state
+    let shuffledQuestions, currentQuestionIndex;
+    var seconds = 60
 
-    setTimer();
-    grabQuestion();
-}
+    // starts quiz
+    function startQuiz() {
+        // hides start screen and unhides questions screen
+        startScreenEl.addClass('hide');
+        questionsEl.removeClass('hide');
 
-function grabQuestion() {
-    resetState()
-    displayQuestion(shuffledQuestions[currentQuestionIndex])
-}
-function displayQuestion(questions) {
-    if (currentQuestionIndex > 3) {
-        endScreenEl.classList.add('stop-time')
-        questionsEl.classList.add('hide');
-        endScreenEl.classList.remove('hide');
-        document.getElementById('final-score').innerHTML = counter.innerHTML
+        // randomizes questions and creates a randomized array
+        shuffledQuestions = questions.sort(() => Math.random() - .5)
+        currentQuestionIndex = 0
+
+        setTimer();
+        grabQuestion();
     }
-    questionTitleEl.innerText = questions.title;
-    questions.options.forEach(options => {
-        const button = document.createElement('button')
-        button.innerText = options.text
-        button.classList.add('button-style', 'answer-button')
-        if (options.correct === true) {
-            button.classList.add('correct')
+
+    function grabQuestion() {
+        resetState()
+        displayQuestion(shuffledQuestions[currentQuestionIndex])
+    }
+    function displayQuestion(questions) {
+        answerButtonsEl.empty();
+        if (currentQuestionIndex > 3) {
+            endScreenEl.addClass('stop-time')
+            questionsEl.addClass('hide');
+            endScreenEl.removeClass('hide');
+            document.getElementById('final-score').innerHTML = counter.innerHTML
         }
-        button.addEventListener('click', selectAnswer)
-        answerButtonsEl.appendChild(button)
-    })
-}
-function resetState() {
-    while (answerButtonsEl.firstChild) {
-        answerButtonsEl.removeChild(answerButtonsEl.firstChild)
+        questionTitleEl.text(questions.title);
+        questions.options.forEach(options => {
+            const button = $('<button>');
+            button.text(options.text)
+            button.addClass('button-style').addClass('answer-button')
+            if (options.correct === true) {
+                button.addClass('correct')
+            }
+            button.on('click', selectAnswer)
+            answerButtonsEl.append(button)
+        })
     }
-}
-
-// takes away time if incorrect answer
-function selectAnswer(e) {
-    const selectedButton = e.target
-    if (selectedButton.classList.contains('correct')) {
-        feedbackEl.classList.remove('hide')
-        feedbackEl.innerHTML = 'Correct'
-        setTimeout(function () {
-            feedbackEl.innerHTML = '';
-        }, 1000);
-    } else {
-        seconds -= 10
-        feedbackEl.classList.remove('hide')
-        feedbackEl.innerHTML = 'Wrong'
-        setTimeout(function () {
-            feedbackEl.innerHTML = '';
-        }, 1000);
-    }
-    currentQuestionIndex++
-    grabQuestion()
-}
-// sets the timer
-function setTimer() {
-    seconds--;
-    counter.innerHTML =
-        (seconds < 10 ? "0" : "") + String(seconds);
-    if (endScreenEl.classList.contains('stop-time')) {
-        counter.innerHTML = document.getElementById('final-score').innerHTML
-    } else if (seconds > 0) {
-        setTimeout(setTimer, 1000);
-
-    } else {
-        counter.innerHTML = '00'
-        questionsEl.classList.add('hide');
-        endScreenEl.classList.remove('hide');
-        document.getElementById('final-score').innerHTML = counter.innerHTML
-    }
-} 
-//saves the highscore
-function saveScore() {
-    var initials = document.getElementById('initials').value;
-    var finalScore = counter.innerHTML
-    if (initials == '') {
-        alert('Please input at least 1 character')
-        return null
-    }
-    var currentScore = { init: initials, score: finalScore };
-    var savedScores = JSON.parse(localStorage.getItem("savedScores"));
-    if (savedScores !== null) {
-        savedScores.push(currentScore);
-        localStorage.setItem("savedScores", JSON.stringify(savedScores));
-    } else {
-        savedScores = [currentScore];
-        localStorage.setItem("savedScores", JSON.stringify(savedScores));
+    function resetState() {
+        while (answerButtonsEl.firstChild) {
+            answerButtonsEl.removeChild(answerButtonsEl.firstChild)
+        }
     }
 
-    window.location.href = "./score.html";
-}
-// event listeners
-document.getElementById('submit-button').addEventListener('click', saveScore)
-document.getElementById('start-button').addEventListener('click', startQuiz)
+    // takes away time if incorrect answer
+    function selectAnswer(e) {
+        const selectedButton = e.target
+        if (selectedButton.classList.contains('correct')) {
+            feedbackEl.removeClass('hide')
+            feedbackEl.text('Correct')
+            setTimeout(function () {
+                feedbackEl.text('')
+                // feedbackEl.innerHTML = '';
+            }, 1000);
+        } else {
+            seconds -= 5
+            feedbackEl.removeClass('hide')
+            feedbackEl.text('Wrong')
+            setTimeout(function () {
+                feedbackEl.text('')
+                // feedbackEl.innerHTML = '';
+            }, 1000);
+        }
+        currentQuestionIndex++
+        grabQuestion()
+    }
+    // sets the timer
+    function setTimer() {
+        seconds--;
+        counter.text((seconds < 10 ? "0" : "") + String(seconds));
+        if (endScreenEl.hasClass('stop-time')) {
+            counter.text(seconds);
+            document.getElementById('final-score').innerHTML = seconds
+        } else if (seconds > 0) {
+            setTimeout(setTimer, 1000);
+
+        } else {
+            counter.innerHTML = '00';
+            questionsEl.addClass('hide');
+            endScreenEl.removeClass('hide');
+            console.log(seconds);
+            document.getElementById('final-score').innerHTML = seconds
+        }
+    } 
+    //saves the highscore
+    function saveScore() {
+        var initials = document.getElementById('initials').value;
+        var finalScore = seconds;
+        if (initials == '') {
+            alert('Please input at least 1 character')
+            return null
+        }
+        var currentScore = { init: initials, score: finalScore };
+        var savedScores = JSON.parse(localStorage.getItem("savedScores"));
+        if (savedScores !== null) {
+            savedScores.push(currentScore);
+            localStorage.setItem("savedScores", JSON.stringify(savedScores));
+        } else {
+            savedScores = [currentScore];
+            localStorage.setItem("savedScores", JSON.stringify(savedScores));
+        }
+
+        window.location.href = "./score.html";
+    }
+    // event listeners
+    document.getElementById('submit-button').addEventListener('click', saveScore)
+    document.getElementById('start-button').addEventListener('click', startQuiz)
+})
