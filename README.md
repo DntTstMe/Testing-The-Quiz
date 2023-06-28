@@ -9,12 +9,11 @@ A timed coding quiz with multiple-choice questions
 * I learned that dedicating your time and putting in the work is both rewarding and enlightening. I learned a lot and feel more confident in myself than I did previously.
 * I feel that my project stands out because it is a piece of me that I put lots of hardwork and time into it so that I could feel proud of how far I have already come in the program.
 
-Screnshot of page
+Screenshot of page
 ![Alt text](image.png)
 
 Link to page
-
-
+ https://dnttstme.github.io/Testing-The-Quiz/
 
 
 
