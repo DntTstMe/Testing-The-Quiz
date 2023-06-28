@@ -56,10 +56,10 @@ body {
   /* styles all items in header */
   .header-content {
     border: solid;
-    padding: 10px;
+    padding: 34px;
     color: var(--main);
     line-height: 25px;
-    margin: 0 10px;
+    margin: 0 200px;
     font-size: large;
     font-weight: bold;
   }

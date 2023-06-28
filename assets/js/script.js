@@ -1,7 +1,5 @@
 $(document).ready(function() {
-
-// variables 
-
+    // variables 
     var counter = $('#timer');
     var questionTitleEl = $('#question-title');
     var feedbackEl = $('#feedback');
@@ -66,7 +64,6 @@ $(document).ready(function() {
             feedbackEl.text('Correct')
             setTimeout(function () {
                 feedbackEl.text('')
-                // feedbackEl.innerHTML = '';
             }, 1000);
         } else {
             seconds -= 5
@@ -74,7 +71,6 @@ $(document).ready(function() {
             feedbackEl.text('Wrong')
             setTimeout(function () {
                 feedbackEl.text('')
-                // feedbackEl.innerHTML = '';
             }, 1000);
         }
         currentQuestionIndex++
